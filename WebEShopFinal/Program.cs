@@ -19,6 +19,8 @@ namespace WebEShopFinal
             builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = false)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             builder.Services.AddRazorPages();
+            builder.Services.AddMvc();
+            builder.Services.AddControllersWithViews();
 
             var app = builder.Build();
 
