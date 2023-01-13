@@ -56,6 +56,7 @@ namespace WebEShopFinal.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Title,Description")] Category category)
         {
+            
             if (ModelState.IsValid)
             {
                 _context.Add(category);

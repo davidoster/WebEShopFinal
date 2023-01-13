@@ -25,6 +25,9 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacy</a>
                         </li>
+                        <li class="nav-item">
+                            @Html.ActionLink("Categories","Index","Categories")
+                        </li>
                     </ul>
                     <partial name="_LoginPartial" />
                 </div>
@@ -39,7 +42,7 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2023 - WebEShopFinal - <a asp-area="" asp-page="/Privacy">Privacy</a>
+            &copy; 2023 - WebEShopFinal Bella Lasithiotaki - <a asp-area="" asp-page="/Privacy">Privacy</a>
         </div>
     </footer>
 
