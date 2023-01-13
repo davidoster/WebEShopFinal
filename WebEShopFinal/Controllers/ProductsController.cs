@@ -46,7 +46,13 @@ namespace WebEShopFinal.Controllers
         // GET: Products/Create
         public IActionResult Create()
         {
-            return View();
+            var mycat = _context.Categories.Single(c => c.Title == "NO NAME");
+            var product = new Product()
+            {
+                Title = "Koukou",
+                Category = mycat
+            };
+            return View(product);
         }
 
         // POST: Products/Create
@@ -54,26 +60,16 @@ namespace WebEShopFinal.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Title,Description,Price")] Product product)
+        public async Task<IActionResult> Create([Bind("Id,Title,Description,Price")] Product product, int categoryId)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(product);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-<<<<<<< Updated upstream
-            else
-            {
-                var mycat = _context.Categories.Single(c => c.Title == "NO NAME");
+                var mycat = _context.Categories.Find(categoryId);
                 product.Category = mycat;
                 _context.Add(product);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
-
             }
-=======
->>>>>>> Stashed changes
             return View(product);
         }
 
