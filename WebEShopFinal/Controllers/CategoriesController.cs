@@ -54,8 +54,9 @@ namespace WebEShopFinal.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Title,Description")] Category category)
+        public async Task<IActionResult> Create([Bind("Id,Title,Description,Products")] Category category)
         {
+            
             if (ModelState.IsValid)
             {
                 _context.Add(category);

@@ -16,7 +16,7 @@ namespace WebEShopFinal.Models
         [Required]
         public string Title { get; set; } // Title
         public string Description { get; set; } // Description
-        public virtual ICollection<Product> Products { get; set; }
+        public virtual ICollection<Product>? Products { get; set; }
 
         public void Dispose()
         {
