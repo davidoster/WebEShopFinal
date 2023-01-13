@@ -26,11 +26,7 @@
                             <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacy</a>
                         </li>
                         <li class="nav-item">
-                            <a asp-action="Create">Create New</a>
-                        </li> 
-                        <li class="nav-item">
-                            @Html.ActionLink("Create category","Index","Categories")
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Add Category</a>
+                            @Html.ActionLink("Categories","Index","Categories")
                         </li>
                     </ul>
                     <partial name="_LoginPartial" />
