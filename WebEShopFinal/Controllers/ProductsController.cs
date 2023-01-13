@@ -62,6 +62,7 @@ namespace WebEShopFinal.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+<<<<<<< Updated upstream
             else
             {
                 var mycat = _context.Categories.Single(c => c.Title == "NO NAME");
@@ -71,6 +72,8 @@ namespace WebEShopFinal.Controllers
                 return RedirectToAction(nameof(Index));
 
             }
+=======
+>>>>>>> Stashed changes
             return View(product);
         }
 
