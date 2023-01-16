@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using WebEShopFinal.Data;
+using WebEShopFinal.Data.Repositories;
 using WebEShopFinal.Models;
 namespace WebEShopFinal.API;
 
@@ -7,10 +8,12 @@ public static class CategoryEndpoints
 {
     public static void MapCategoryEndpoints (this IEndpointRouteBuilder routes)
     {
+        //var category = new CategoryRepository(ApplicationDbContext db);
+        
         // GET ALL categories --- SELECT / READ
         routes.MapGet("/api/Categories", async (ApplicationDbContext db) =>
         {
-            return await db.Categories.ToListAsync();
+            return await new CategoryRepository(db).GetAll();
         })
         .WithName("GetAllCategories")
         .Produces<List<Category>>(StatusCodes.Status200OK);
@@ -18,7 +21,7 @@ public static class CategoryEndpoints
         // GET a category --- SELECT WHERE / READ
         routes.MapGet("/api/Category/{id}", async (int Id, ApplicationDbContext db) =>
         {
-            return await db.Categories.FindAsync(Id)
+            return await new CategoryRepository(db).Get(Id)
                 is Category model
                     ? Results.Ok(model)
                     : Results.NotFound();
@@ -30,7 +33,7 @@ public static class CategoryEndpoints
         // UPDATE a category --- UPDATE 
         routes.MapPut("/api/Category/{id}", async (int Id, Category category, ApplicationDbContext db) =>
         {
-            var foundModel = await db.Categories.FindAsync(Id);
+            var foundModel = await new CategoryRepository(db).Update(Id, category);
 
             if (foundModel is null)
             {
@@ -50,7 +53,7 @@ public static class CategoryEndpoints
         // CREATE a category --- CREATE
         routes.MapPost("/api/Category/", async (Category category, ApplicationDbContext db) =>
         {
-            db.Categories.Add(category);
+            await new CategoryRepository(db).Add(category);
             await db.SaveChangesAsync();
             return Results.Created($"/Categorys/{category.Id}", category);
         })
@@ -60,9 +63,9 @@ public static class CategoryEndpoints
         // DELETE a category --- DELETE
         routes.MapDelete("/api/Category/{id}", async (int Id, ApplicationDbContext db) =>
         {
-            if (await db.Categories.FindAsync(Id) is Category category)
+            if (await new CategoryRepository(db).Get(Id) is Category category)
             {
-                db.Categories.Remove(category);
+                new CategoryRepository(db).Remove(Id);
                 await db.SaveChangesAsync();
                 return Results.Ok(category);
             }
