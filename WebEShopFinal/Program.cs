@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using WebEShopFinal.Data;
 using WebEShopFinal.API;
+using WebEShopFinal.Data.Repositories;
 
 namespace WebEShopFinal
 {
@@ -24,7 +25,19 @@ namespace WebEShopFinal
             builder.Services.AddControllersWithViews();
             builder.Services.AddEndpointsApiExplorer();
 
-                        builder.Services.AddSwaggerGen();
+            //add singleton??
+            builder.Services.AddSingleton<ICategoryRepository, CategoryRepository>();
+
+            //builder.Services.AddSingleton<CategoryRepository>(ApplicationDbContext db);
+            //services.AddSingleton<ICategoryRepository>(new CategoryRepository(db));
+
+            //public void ConfigureServices(IServiceCollection services)
+            //{
+            //services.AddSingleton<ICategoryRepository, CategoryRepository>();
+            //services.AddSingleton<ICategoryRepository>(new CategoryRepository()); // custom LoginService
+            //}
+
+            builder.Services.AddSwaggerGen();
 
             var app = builder.Build();
 
@@ -40,11 +53,11 @@ namespace WebEShopFinal
                 app.UseHsts();
             }
 
-                        if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-};
+            if (app.Environment.IsDevelopment())
+            {
+                app.UseSwagger();
+                app.UseSwaggerUI();
+            };
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
@@ -58,7 +71,7 @@ namespace WebEShopFinal
             app.MapDefaultControllerRoute(); // controllers' routing
             app.MapGet("/api/koukou", () => { return "This is Koukou!!!"; }); // minimal web api
 
-                        app.MapCategoryEndpoints();
+            app.MapCategoryEndpoints();
             //app.MapControllerRoute(
             //    name: "default",
             //    pattern: "{controller=Home}/{action=Index}/{id?}");
@@ -66,4 +79,23 @@ namespace WebEShopFinal
             app.Run();
         }
     }
+
+    //public void ConfigureServices(IServiceCollection services)
+    //{
+    //    services.AddAuthentication();
+    //    services.AddRazorPages(options =>
+    //    {
+    //        options.Conventions.AddPageRoute("/Dashboard", "Authorize");
+    //        //options.Conventions.AuthorizePage("/Dashboard");
+    //        options.Conventions.AllowAnonymousToPage("/Login");
+    //    }
+    //        );
+    //    services.AddSingleton<ILoginService>(new LoginService()); // custom LoginService
+    //}
+
+
+
+
+
+
 }

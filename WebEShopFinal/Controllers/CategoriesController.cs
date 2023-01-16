@@ -7,22 +7,31 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using WebEShopFinal.Data;
 using WebEShopFinal.Models;
+using WebEShopFinal.Data.Repositories;
 
 namespace WebEShopFinal.Controllers
 {
     public class CategoriesController : Controller
     {
-        private readonly ApplicationDbContext _context;
+        private readonly ApplicationDbContext _context; // DI
+        private readonly ICategoryRepository _categoryRepository;
 
         public CategoriesController(ApplicationDbContext context)
         {
             _context = context;
+            _categoryRepository = new CategoryRepository(context);
         }
+
+        public CategoriesController(ICategoryRepository CategoryRepository)
+        {
+            _categoryRepository = CategoryRepository;
+        }
+
 
         // GET: Categories
         public async Task<IActionResult> Index()
         {
-              return View(await _context.Categories.ToListAsync());
+            return View(await _categoryRepository.GetAll());
         }
 
         // GET: Categories/Details/5
@@ -33,8 +42,7 @@ namespace WebEShopFinal.Controllers
                 return NotFound();
             }
 
-            var category = await _context.Categories
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var category = await _categoryRepository.Get(id);
             if (category == null)
             {
                 return NotFound();
@@ -56,11 +64,10 @@ namespace WebEShopFinal.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Title,Description")] Category category)
         {
-            
+
             if (ModelState.IsValid)
             {
-                _context.Add(category);
-                await _context.SaveChangesAsync();
+                await _categoryRepository.Add(category);
                 return RedirectToAction(nameof(Index));
             }
             return View(category);
@@ -74,7 +81,7 @@ namespace WebEShopFinal.Controllers
                 return NotFound();
             }
 
-            var category = await _context.Categories.FindAsync(id);
+            var category = await _categoryRepository.Get(id);
             if (category == null)
             {
                 return NotFound();
@@ -98,8 +105,7 @@ namespace WebEShopFinal.Controllers
             {
                 try
                 {
-                    _context.Update(category);
-                    await _context.SaveChangesAsync();
+                    await _categoryRepository.Update(category);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -125,8 +131,7 @@ namespace WebEShopFinal.Controllers
                 return NotFound();
             }
 
-            var category = await _context.Categories
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var category = await _categoryRepository.Get(id);
             if (category == null)
             {
                 return NotFound();
@@ -145,18 +150,19 @@ namespace WebEShopFinal.Controllers
                 return Problem("Entity set 'ApplicationDbContext.Categories'  is null.");
             }
             var category = await _context.Categories.FindAsync(id);
+
             if (category != null)
             {
-                _context.Categories.Remove(category);
+                await _categoryRepository.Remove(category);
             }
-            
-            await _context.SaveChangesAsync();
+
+            //await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool CategoryExists(int id)
         {
-          return _context.Categories.Any(e => e.Id == id);
+            return _context.Categories.Any(e => e.Id == id);
         }
     }
 }
