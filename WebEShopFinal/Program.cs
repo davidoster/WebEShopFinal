@@ -26,7 +26,7 @@ namespace WebEShopFinal
             builder.Services.AddEndpointsApiExplorer();
 
             //add singleton??
-            builder.Services.AddSingleton<ICategoryRepository, CategoryRepository>();
+            //builder.Services.AddSingleton<ICategoryRepository, CategoryRepository>();
 
             //builder.Services.AddSingleton<CategoryRepository>(ApplicationDbContext db);
             //services.AddSingleton<ICategoryRepository>(new CategoryRepository(db));

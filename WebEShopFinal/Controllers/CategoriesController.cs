@@ -22,10 +22,10 @@ namespace WebEShopFinal.Controllers
             _categoryRepository = new CategoryRepository(context);
         }
 
-        public CategoriesController(ICategoryRepository CategoryRepository)
-        {
-            _categoryRepository = CategoryRepository;
-        }
+        //public CategoriesController(ICategoryRepository CategoryRepository)
+        //{
+        //    _categoryRepository = CategoryRepository;
+        //}
 
 
         // GET: Categories
