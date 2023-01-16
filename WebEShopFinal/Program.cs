@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using WebEShopFinal.Data;
+using WebEShopFinal.API;
 
 namespace WebEShopFinal
 {
@@ -21,6 +22,9 @@ namespace WebEShopFinal
             builder.Services.AddRazorPages();
             builder.Services.AddMvc();
             builder.Services.AddControllersWithViews();
+            builder.Services.AddEndpointsApiExplorer();
+
+                        builder.Services.AddSwaggerGen();
 
             var app = builder.Build();
 
@@ -36,16 +40,25 @@ namespace WebEShopFinal
                 app.UseHsts();
             }
 
+                        if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI();
+};
+
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
-            app.UseRouting();
+            app.UseRouting(); // general routing
 
             app.UseAuthentication();
             app.UseAuthorization();
 
-            app.MapRazorPages();
-            app.MapDefaultControllerRoute();
+            app.MapRazorPages(); // razor pages' routing
+            app.MapDefaultControllerRoute(); // controllers' routing
+            app.MapGet("/api/koukou", () => { return "This is Koukou!!!"; }); // minimal web api
+
+                        app.MapCategoryEndpoints();
             //app.MapControllerRoute(
             //    name: "default",
             //    pattern: "{controller=Home}/{action=Index}/{id?}");
