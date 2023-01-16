@@ -59,11 +59,11 @@ namespace WebEShopFinal.Data.Repositories
 
         public async Task<Category> Update(int id, Category category)
         {
-            var dbCategory = Get(id);
+            var dbCategory = _dbContext.Categories.Find(id);
             dbCategory = category;
             _dbContext.Categories.Update(dbCategory);
             await _dbContext.SaveChangesAsync();
-            //_dbContext.Update(category);
+
             return dbCategory;
         }
 
@@ -81,4 +81,3 @@ namespace WebEShopFinal.Data.Repositories
 
 
 
-}

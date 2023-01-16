@@ -9,5 +9,6 @@ namespace WebEShopFinal.Data.Repositories
         Task<IEnumerable<Category>> GetAll();
         Task<Category> Add(Category category);
         Task<bool> Remove(int id);
+        Task<Category> Update(int id, Category category);
     }
 }

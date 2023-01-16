@@ -9,8 +9,7 @@ using WebEShopFinal.Data;
 
 namespace WebEShopFinal.Data.Migrations
 {
-    [DbContext(typeof(
-        ))]
+    [DbContext(typeof(ApplicationDbContext))]
     [Migration("00000000000000_CreateIdentitySchema")]
     partial class CreateIdentitySchema
     {

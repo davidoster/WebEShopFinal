@@ -105,7 +105,7 @@ namespace WebEShopFinal.Controllers
             {
                 try
                 {
-                    await _categoryRepository.Update(category);
+                    await _categoryRepository.Update(id, category);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -153,7 +153,7 @@ namespace WebEShopFinal.Controllers
 
             if (category != null)
             {
-                await _categoryRepository.Remove(category);
+                await _categoryRepository.Remove(id);
             }
 
             //await _context.SaveChangesAsync();
