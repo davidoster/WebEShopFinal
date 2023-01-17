@@ -23,10 +23,19 @@ namespace WebEShopFinal.Data.Repositories
         public async Task<int> AddOrUpdate(Category entity)
         {
             _db.Categories.Update(entity);
-            await _db.SaveChangesAsync();
+            try
+            {
+                await _db.SaveChangesAsync();
+            }
+            catch (Exception)
+            {
+
+                return -1;
+            }
             return entity.Id;
         }
 
+        // PLEASEEEEE chnage this so it doesn't implement any Business Logic (BL)
         public async Task<int> DeleteAsync(int id)
         {
             int result = 0;

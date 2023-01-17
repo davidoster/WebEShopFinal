@@ -28,6 +28,15 @@ namespace WebEShopFinal
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
+            builder.Services.AddCors(options =>
+            {
+                options.AddDefaultPolicy(
+                    policy =>
+                    {
+                        policy.WithOrigins("http://localhost:4200");
+                    });
+            });
+
             // custom services
             builder.Services.AddScoped<IGenericRepository<Category>, CategoryRepository>();
             builder.Services.AddScoped<IGenericRepository<Product>, ProductRepository>();
@@ -57,6 +66,7 @@ namespace WebEShopFinal
             app.UseStaticFiles();
 
             app.UseRouting(); // general routing
+            app.UseCors();
 
             app.UseAuthentication();
             app.UseAuthorization();

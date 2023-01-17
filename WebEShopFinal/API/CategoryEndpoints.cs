@@ -43,7 +43,11 @@ public static class CategoryEndpoints
         routes.MapPost("/api/Category/", async (Category category, ICategoryService service) =>
         {
             var dbCategory = await service.AddOrUpdateCategory(category);
-            return Results.Created($"/Categories/{dbCategory.Id}", dbCategory);
+            if(dbCategory != null)
+            {
+                return Results.Created($"/Categories/{dbCategory.Id}", dbCategory);
+            }
+            return Results.NotFound();
         })
         .WithName("CreateCategory")
         .Produces<Category>(StatusCodes.Status201Created);
