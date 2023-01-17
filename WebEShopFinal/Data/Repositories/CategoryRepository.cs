@@ -23,7 +23,8 @@ namespace WebEShopFinal.Data.Repositories
         public async Task<int> AddOrUpdate(Category entity)
         {
             _db.Categories.Update(entity);
-            return await _db.SaveChangesAsync();
+            await _db.SaveChangesAsync();
+            return entity.Id;
         }
 
         public async Task<int> DeleteAsync(int id)

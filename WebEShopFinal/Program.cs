@@ -1,4 +1,4 @@
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using WebEShopFinal.Data;
 using WebEShopFinal.API;
@@ -13,7 +13,7 @@ namespace WebEShopFinal
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
-
+            
             // Add services to the container.
             var connectionString = builder.Configuration.GetConnectionString("DefaultConnection2") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
             builder.Services.AddDbContext<ApplicationDbContext>(options =>
@@ -47,11 +47,11 @@ namespace WebEShopFinal
                 app.UseHsts();
             }
 
-                        if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-};
+            if (app.Environment.IsDevelopment())
+            {
+                app.UseSwagger();
+                app.UseSwaggerUI();
+            };
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
@@ -60,12 +60,14 @@ namespace WebEShopFinal
 
             app.UseAuthentication();
             app.UseAuthorization();
+            //app.UseMyServices(); // δικό μου container
 
             app.MapRazorPages(); // razor pages' routing
             app.MapDefaultControllerRoute(); // controllers' routing
             app.MapGet("/api/koukou", () => { return "This is Koukou!!!"; }); // minimal web api
 
-                        app.MapCategoryEndpoints();
+            
+            app.MapCategoryEndpoints();
             //app.MapControllerRoute(
             //    name: "default",
             //    pattern: "{controller=Home}/{action=Index}/{id?}");
