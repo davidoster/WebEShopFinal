@@ -1,5 +1,5 @@
 import { Component, Injectable } from '@angular/core';
-import { Http } from '@angular/http'; 
+import { Http } from '@angular/http';
 // import 'rxjs/add/operator/map';
 
 @Component({
@@ -13,13 +13,11 @@ export class CategoriesComponent {
   categories: any = [];
 
 
-  constructor(public http : Http)
-  {
-    this.GetAllCategories(); //.subscribe(categories => this.categories);
+  constructor(public http: Http) {
+    this.GetAllCategories();
   }
 
-  GetAllCategories()
-  {
+  GetAllCategories() {
     // let category = { title: "ABC", description: "ABC description" }; 
     // this.categories.push(category);
 
@@ -28,8 +26,6 @@ export class CategoriesComponent {
 
     // somehow to get via https://localhost:7258/api/categories
     console.log("Hello");
-    console.log(this.http.get('https://localhost:7258/api/categories'));
-     //.then(res => res.json()); //.map(res =>res.json());
-
+    this.http.get('https://localhost:7258/api/categories').subscribe(res => this.categories = res.json());
   }
 }
