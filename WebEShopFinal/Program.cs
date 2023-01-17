@@ -2,6 +2,9 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using WebEShopFinal.Data;
 using WebEShopFinal.API;
+using WebEShopFinal.Data.Repositories;
+using WebEShopFinal.Models;
+using WebEShopFinal.Services;
 
 namespace WebEShopFinal
 {
@@ -23,8 +26,12 @@ namespace WebEShopFinal
             builder.Services.AddMvc();
             builder.Services.AddControllersWithViews();
             builder.Services.AddEndpointsApiExplorer();
+            builder.Services.AddSwaggerGen();
 
-                        builder.Services.AddSwaggerGen();
+            // custom services
+            builder.Services.AddScoped<IGenericRepository<Category>, CategoryRepository>();
+            builder.Services.AddScoped<IGenericRepository<Product>, ProductRepository>();
+            builder.Services.AddScoped<ICategoryService, CategoryService>();
 
             var app = builder.Build();
 
