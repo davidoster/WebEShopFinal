@@ -34,6 +34,7 @@ namespace WebEShopFinal
                     policy =>
                     {
                         policy.WithOrigins("http://localhost:4200");
+                        policy.AllowAnyHeader();
                     });
             });
 
