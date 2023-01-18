@@ -33,8 +33,7 @@ namespace WebEShopFinal
                 options.AddDefaultPolicy(
                     policy =>
                     {
-                        policy.WithOrigins("http://localhost:4200");
-                        policy.AllowAnyHeader();
+                        policy.WithOrigins("http://localhost:4200").AllowAnyHeader();
                     });
             });
 

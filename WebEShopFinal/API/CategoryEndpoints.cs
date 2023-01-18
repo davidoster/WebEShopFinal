@@ -18,7 +18,7 @@ public static class CategoryEndpoints
         .Produces<List<Category>>(StatusCodes.Status200OK);
 
         // GET a category --- SELECT WHERE / READ
-        routes.MapGet("/api/Category/{id}", async (int Id, ICategoryService service) =>
+        routes.MapGet("/api/Category/{Id}", async (int Id, ICategoryService service) =>
         {
             return await service.GetCategory(Id)
                 is Category model
@@ -30,7 +30,7 @@ public static class CategoryEndpoints
         .Produces(StatusCodes.Status404NotFound);
 
         // UPDATE a category --- UPDATE 
-        routes.MapPut("/api/Category/{id}", async (int Id, Category category, ICategoryService service) =>
+        routes.MapPut("/api/Category/{Id}", async (int Id, Category category, ICategoryService service) =>
         {
             category.Id = Id;
             return Results.Text($"{await service.AddOrUpdateCategory(category)}");
@@ -53,7 +53,7 @@ public static class CategoryEndpoints
         .Produces<Category>(StatusCodes.Status201Created);
 
         // DELETE a category --- DELETE
-        routes.MapDelete("/api/Category/{id}", async (int Id, ICategoryService service) =>
+        routes.MapDelete("/api/Category/{Id}", async (int Id, ICategoryService service) =>
         {
             return Results.Text($"{await service.RemoveCategory(Id)}");
         })

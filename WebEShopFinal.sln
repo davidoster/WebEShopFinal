@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebEShopFinal", "WebEShopFi
 EndProject
 Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "frontend", "frontend\", "{FD56B432-719B-4066-8255-6D874F8B10B0}"
 	ProjectSection(WebsiteProperties) = preProject
-		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.8.1"
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.8"
 		Debug.AspNetCompiler.VirtualPath = "/localhost_59505"
 		Debug.AspNetCompiler.PhysicalPath = "frontend\"
 		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_59505\"
