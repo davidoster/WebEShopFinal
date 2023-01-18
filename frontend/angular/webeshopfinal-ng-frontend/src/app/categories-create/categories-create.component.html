@@ -1,0 +1,12 @@
+<h3>{{ title }}</h3>
+
+<form #f="ngForm" (ngSubmit)="onSubmit(f)" novalidate>
+  <input name="title"  required  [(ngModel)]="category.title">
+  <input name="description" [(ngModel)]="category.description">
+  <button>Submit</button>
+</form>
+
+<p>Title value: {{ category.title }}</p>
+<p>Description value: {{ category.description }}</p>
+<p>Form value: {{ f.value | json }}</p>
+<p>Form valid: {{ f.valid }}</p>

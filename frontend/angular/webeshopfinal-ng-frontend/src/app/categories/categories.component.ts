@@ -1,5 +1,6 @@
 import { Component, Injectable } from '@angular/core';
 import { Http } from '@angular/http';
+
 // import 'rxjs/add/operator/map';
 
 @Component({
@@ -11,6 +12,7 @@ import { Http } from '@angular/http';
 export class CategoriesComponent {
   title = "List of Categories";
   categories: any = [];
+  
 
 
   constructor(public http: Http) {
