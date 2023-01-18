@@ -3,7 +3,28 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33209.295
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebEShopFinal", "WebEShopFinal\WebEShopFinal.csproj", "{87E5CF2E-98A2-4F64-8170-9D807C1C2FE2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebEShopFinal", "WebEShopFinal\WebEShopFinal.csproj", "{87E5CF2E-98A2-4F64-8170-9D807C1C2FE2}"
+EndProject
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "frontend", "frontend\", "{FD56B432-719B-4066-8255-6D874F8B10B0}"
+	ProjectSection(WebsiteProperties) = preProject
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.8.1"
+		Debug.AspNetCompiler.VirtualPath = "/localhost_59505"
+		Debug.AspNetCompiler.PhysicalPath = "frontend\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_59505\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/localhost_59505"
+		Release.AspNetCompiler.PhysicalPath = "frontend\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_59505\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "59505"
+		SlnRelativePath = "frontend\"
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +36,10 @@ Global
 		{87E5CF2E-98A2-4F64-8170-9D807C1C2FE2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{87E5CF2E-98A2-4F64-8170-9D807C1C2FE2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{87E5CF2E-98A2-4F64-8170-9D807C1C2FE2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FD56B432-719B-4066-8255-6D874F8B10B0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FD56B432-719B-4066-8255-6D874F8B10B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FD56B432-719B-4066-8255-6D874F8B10B0}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{FD56B432-719B-4066-8255-6D874F8B10B0}.Release|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -7,14 +7,15 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using WebEShopFinal.Data;
 using WebEShopFinal.Models;
+using WebEShopFinal.Services;
 
 namespace WebEShopFinal.Controllers
 {
-    public class CategoriesController : Controller
+    public class CategoriesController<Service> : Controller where Service : CategoryService
     {
         private readonly ApplicationDbContext _context;
 
-        public CategoriesController(ApplicationDbContext context)
+        public CategoriesController(ApplicationDbContext context, CategoryService service)
         {
             _context = context;
         }
